@@ -1,0 +1,10 @@
+services:
+  devdb:
+    image: postgres:16-bookworm
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: localpassword
+    volumes:
+      # create xp_ps and xp_auth databases in same container for local development
+      - ./dev/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
